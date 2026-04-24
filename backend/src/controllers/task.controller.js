@@ -163,9 +163,12 @@ const updateTask = async (req, res) => {
       return res.status(404).json({ error: 'Task not found' });
     }
 
-    // MEMBER can only update their own created tasks
-    if (req.user.role === 'MEMBER' && existingTask.createdById !== req.user.id) {
-      return res.status(403).json({ error: 'Insufficient permissions' });
+    // MEMBER can only update their own created tasks or tasks assigned to them
+    if (req.user.role === 'MEMBER') {
+      const isMine = existingTask.createdById === req.user.id || existingTask.assignedToId === req.user.id;
+      if (!isMine) {
+        return res.status(403).json({ error: 'Insufficient permissions' });
+      }
     }
 
     // If assigning to someone, verify they belong to the same org

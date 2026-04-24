@@ -21,8 +21,8 @@ router.post(
   inviteMember
 );
 
-// GET /api/org/members — ADMIN only
-router.get('/members', requireRole('ADMIN'), getMembers);
+// GET /api/org/members — Any authenticated user
+router.get('/members', getMembers);
 
 // GET /api/org/me — any authenticated user
 router.get('/me', getMyOrg);
