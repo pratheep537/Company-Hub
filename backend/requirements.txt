@@ -1,9 +1,28 @@
-@prisma/client==6.19.3
+# Backend System Requirements & Dependencies
+
+While this is a Node.js project (managed via package.json), this file outlines the core system requirements and high-level module dependencies required to run the backend API.
+
+## System Requirements
+- Node.js >= 18.0.0
+- Docker Desktop (or Docker Engine + Docker Compose)
+- PostgreSQL (Provided automatically via docker-compose)
+
+## Core Runtime Dependencies (NPM)
+express==4.18.2
+@prisma/client==5.10.2
 bcrypt==5.1.1
-cors==2.8.6
-dotenv==16.6.1
-express==4.22.1
-express-validator==7.3.2
-jsonwebtoken==9.0.3
-prisma==6.19.3
-nodemon==3.1.14
+jsonwebtoken==9.0.2
+cors==2.8.5
+dotenv==16.4.5
+express-validator==7.0.1
+morgan==1.10.0
+
+## Development Dependencies
+prisma==5.10.2
+nodemon==3.1.0
+
+## Environment Variables (.env)
+PORT=3000
+DATABASE_URL=postgresql://postgres:postgres@db:5432/task_management?schema=public
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRES_IN=7d
